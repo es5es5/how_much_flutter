@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "785130804537",
+    "firebase_url": "https://how-much-b9a2a.firebaseio.com",
+    "project_id": "how-much-b9a2a",
+    "storage_bucket": "how-much-b9a2a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:785130804537:android:2eae76ebbf178ce0ab84e8",
+        "android_client_info": {
+          "package_name": "kr.inplat.how_much_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "785130804537-cv14kckjfq8t4cv31241uuqdb2hm6tju.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBc7m-zQkTPXvVYbyp3ImxRJBY_-jhcap8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "785130804537-cv14kckjfq8t4cv31241uuqdb2hm6tju.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
