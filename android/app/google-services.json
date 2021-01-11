@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "785130804537-ud38k9ucvbphm5vkmhnm0trni8n8j2ah.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kr.inplat.how_much_flutter",
+            "certificate_hash": "7e03670a661cc933f6b419be278624caf41f8f0c"
+          }
+        },
+        {
           "client_id": "785130804537-cv14kckjfq8t4cv31241uuqdb2hm6tju.apps.googleusercontent.com",
           "client_type": 3
         }
