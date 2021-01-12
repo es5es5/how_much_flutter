@@ -44,26 +44,31 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'How Much ?',
-              style: TextStyle(
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.amber),
-            ),
-            SizedBox(height: 20),
-            CircleAvatar(
-              backgroundImage: NetworkImage(
-                  'https://engineering.linecorp.com/wp-content/uploads/2019/08/flutter1.png'),
-              radius: 60,
-            ),
-            SizedBox(height: 20),
-            SignInButton(Buttons.Google,
-                text: 'Sign out', onPressed: () => authBloc.logout())
-          ],
+        child: StreamBuilder<User>(
+          stream: authBloc.currentUser,
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) return CircularProgressIndicator();
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'How Much ?',
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.amber),
+                ),
+                SizedBox(height: 20),
+                CircleAvatar(
+                  backgroundImage: NetworkImage(snapshot.data.photoURL.replaceFirst('s96', 's400')),
+                  radius: 60,
+                ),
+                SizedBox(height: 20),
+                SignInButton(Buttons.Google,
+                    text: 'Sign out', onPressed: () => authBloc.logout())
+              ],
+            );
+          }
         ),
       ),
     );
