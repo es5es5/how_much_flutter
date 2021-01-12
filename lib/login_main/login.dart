@@ -1,7 +1,12 @@
+import 'dart:async';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:how_much_flutter/auth/auth_bloc.dart';
 import 'package:how_much_flutter/login_main/home.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -9,18 +14,36 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  StreamSubscription<User> loginStateSubscription;
+
+  @override
+  void initState() {
+    var authBloc = Provider.of<AuthBloc>(context, listen: false);
+    loginStateSubscription = authBloc.currentUser.listen((user) {
+      if (user != null) {
+        Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => HomeScreen()));
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    loginStateSubscription.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final authBloc = Provider.of<AuthBloc>(context);
+
     return Scaffold(
         body: Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SignInButton(Buttons.Google,
-              onPressed: () => {
-                    Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => HomeScreen()))
-                  })
+          SignInButton(Buttons.Google, onPressed: () => authBloc.loginGoogle())
         ],
       ),
     ));
