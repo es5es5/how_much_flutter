@@ -2,11 +2,10 @@ import 'dart:async';
 import 'dart:ui';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:how_much_flutter/auth/auth_bloc.dart';
 import 'package:how_much_flutter/login_main/login.dart';
+import 'package:how_much_flutter/screens/pay_list.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -45,31 +44,39 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: Center(
         child: StreamBuilder<User>(
-          stream: authBloc.currentUser,
-          builder: (context, snapshot) {
-            if (!snapshot.hasData) return CircularProgressIndicator();
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'How Much ?',
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.amber),
-                ),
-                SizedBox(height: 20),
-                CircleAvatar(
-                  backgroundImage: NetworkImage(snapshot.data.photoURL.replaceFirst('s96', 's400')),
-                  radius: 60,
-                ),
-                SizedBox(height: 20),
-                SignInButton(Buttons.Google,
-                    text: 'Sign out', onPressed: () => authBloc.logout())
-              ],
-            );
-          }
-        ),
+            stream: authBloc.currentUser,
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) return CircularProgressIndicator();
+              return Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    '얼마에요 ?',
+                    style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.amber),
+                  ),
+                  SizedBox(height: 20),
+                  CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        snapshot.data.photoURL.replaceFirst('s96', 's400')),
+                    radius: 60,
+                  ),
+                  SizedBox(height: 20),
+                  FlatButton(
+                    onPressed: () => {
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) => PayListPage()))
+                    },
+                    color: Colors.grey,
+                    child: Text('장부입력'),
+                  ),
+                  // SignInButton(Buttons.Google,
+                  //     text: 'Sign out', onPressed: () => authBloc.logout()),
+                ],
+              );
+            }),
       ),
     );
   }

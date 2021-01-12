@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:how_much_flutter/auth/auth_bloc.dart';
+import 'package:how_much_flutter/constants.dart';
 import 'package:how_much_flutter/login_main/login.dart';
 import 'package:provider/provider.dart';
 
@@ -19,8 +20,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
+          primaryColor: PrimaryColor,
           brightness: Brightness.dark,
-          primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: LoginScreen(),
