@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:how_much_flutter/screens/components/app_bar_body.dart';
 
 class PayListPage extends StatefulWidget {
   @override
@@ -11,12 +12,7 @@ class _PayListPageState extends State<PayListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [Text('Hi')],
-        ),
-      ),
+      body: AppBarBody()
     );
   }
 
