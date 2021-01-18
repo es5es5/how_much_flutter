@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    '얼마에요 ?',
+                    snapshot.data.displayName,
                     style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
@@ -71,6 +71,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     },
                     color: Colors.grey,
                     child: Text('장부입력'),
+                  ),
+                  FlatButton(
+                    onPressed: () => {
+                      authBloc.logout()
+                    },
+                    color: Colors.grey,
+                    child: Text('로그아웃'),
                   ),
                   // SignInButton(Buttons.Google,
                   //     text: 'Sign out', onPressed: () => authBloc.logout()),
